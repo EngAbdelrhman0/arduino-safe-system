@@ -7,17 +7,18 @@ The system features user authentication via a keypad, feedback through an LCD an
 
 - Set up a custom username and password on first use  
 - Password input is hidden with asterisks `*`  
+- `#` is used to confirm (Enter)  
 - Lock/unlock the safe using a servo motor  
 - Display status and prompts on a 16x2 I2C LCD screen  
 - Audio feedback with a buzzer:
-  - Successful login
-  - Incorrect password
-  - System lock warnings
-- System lockout after 3 failed attempts, with lock time doubling each time
+  - Successful login  
+  - Incorrect password  
+  - System lock warnings  
+- System lockout after 3 failed attempts (lock time increases progressively)
 - Support for:
-  - Clear input with `*`
-  - Delete last character with `D`
-  - Close safe with `C`
+  - Clear input with `*`  
+  - Delete last character with `D`  
+  - Close safe with `C`  
 
 ## Circuit Details and Connections
 
@@ -72,7 +73,7 @@ The system features user authentication via a keypad, feedback through an LCD an
 - System stores the entered username/password temporarily in memory  
 - Success and failure tones added to enhance interactivity  
 - Keypress sound plays with every keypad input  
-- System locks for 60 seconds after 3 failed password attempts, and lock duration doubles after each failure cycle  
+- System locks after 3 failed attempts, and lock duration doubles each failure cycle  
 
 ## References
 
