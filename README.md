@@ -1,4 +1,4 @@
-# Password-Protected Safe using Arduino 🔐
+# Password-Protected Safe using Arduino 
 
 An academic project for building a password-protected electronic safe using Arduino.  
 The system uses a keypad for input, an LCD for user feedback, a buzzer for alerts, and a servo motor for locking/unlocking.  
@@ -13,7 +13,7 @@ It includes a lockout mechanism after multiple failed attempts and was implement
 - Arduino IDE (C++)
 
 ## Status
-✅ Working prototype with full functionality
+ Working prototype with full functionality
 
 ## Author
 Abdelrhman Ashraf
