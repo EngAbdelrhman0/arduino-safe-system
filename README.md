@@ -1,17 +1,18 @@
 # Password-Protected Safe using Arduino
 
-An academic project that demonstrates a secure electronic safe system using an Arduino Uno.  
+An academic project that implements a secure electronic safe system using Arduino Uno.  
 The system features user authentication via a keypad, feedback through an LCD and buzzer, and a servo-based locking mechanism.
 
 ## Features
 
 - Username and password setup on first use  
-- Hidden password input  
-- Safe controlled by servo motor  
+- Hidden password input using asterisks   
+- Safe controlled by a servo motor  
 - LCD for feedback  
-- Buzzer for login status  
+- Buzzer for login status and errors  
 - Locks after 3 wrong attempts (lock time doubles)  
-- Supports `*` (clear), `D` (delete), `C` (close), `#` (enter).
+- Supports: `*` (clear), `D` (delete), `C` (close), `#` (enter)
+
 ## Circuit Details and Connections
 
 ### Components Used
@@ -60,12 +61,11 @@ The system features user authentication via a keypad, feedback through an LCD an
 
 ## Modifications and Additions
 
-- Project name and team name displayed on startup for 2.5 seconds  
-- First-time setup prompts the user to enter a username and password  
-- System stores the entered username/password temporarily in memory  
-- Success and failure tones added to enhance interactivity  
-- Keypress sound plays with every keypad input  
-- System locks after 3 failed attempts, and lock duration doubles each failure cycle  
+- Project name and team name displayed on startup  
+- First-time setup for username and password  
+- Password stored temporarily in memory  
+- Success/failure tones and keypress sound added  
+- System locks after 3 failed attempts; lock duration doubles every cycle  
 
 ## References
 
@@ -81,4 +81,4 @@ The system features user authentication via a keypad, feedback through an LCD an
 ## Additional Notes
 
 - The system was tested and verified using the Wokwi online simulator  
-- Documentation and logic flow were refined with the help of AI tools for clarity  
+- Created as part of a team project at Helwan University – Electrical Power and Machines Department
