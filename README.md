@@ -6,42 +6,86 @@ The system features user authentication via a keypad, feedback through an LCD an
 ## Features
 
 - Set up a custom username and password on first use  
-- Hide password input using asterisks `*`  
+- Password input is hidden with asterisks `*`  
 - Lock/unlock the safe using a servo motor  
-- Display feedback on an I2C LCD screen  
-- Audio feedback using a buzzer for:
+- Display status and prompts on a 16x2 I2C LCD screen  
+- Audio feedback with a buzzer:
   - Successful login
-  - Wrong password
-  - System lock warning
-- System lockout after 3 failed attempts, with increasing lock time
-- Delete characters with `D`, clear all with `*`, close the safe with `C`
+  - Incorrect password
+  - System lock warnings
+- System lockout after 3 failed attempts, with lock time doubling each time
+- Support for:
+  - Clear input with `*`
+  - Delete last character with `D`
+  - Close safe with `C`
 
-## Tools & Components
+## Circuit Details and Connections
+
+### Components Used
 
 - Arduino Uno  
-- Keypad (4x4)  
-- I2C LCD Display (16x2)  
-- Buzzer  
+- Keypad (4x4 Membrane)  
 - Servo Motor  
-- Arduino IDE (C++)  
+- LCD 1602 I2C  
+- Buzzer  
+- Breadboard  
+- Male/Female Jumper Wires  
 
-## How It Works
+### Power Connections
 
-1. On first boot, the user sets a username and password (each up to 5 characters)  
-2. On every restart, the system asks for the saved password to unlock  
-3. After 3 wrong attempts, the system locks for 60 seconds and doubles the lock time with each subsequent lockout  
-4. The user can:
-   - Clear input with `*`
-   - Delete last character with `D`
-   - Close the safe using `C` if it’s open
+- Arduino 5V → Breadboard positive rail  
+- Arduino GND → Breadboard negative rail  
 
-## Prototype
+### Servo Motor
 
-You can explore a prototype of the user interface interactions using Adobe XD:  
-[View Adobe XD Prototype](ضع-هنا-الرابط)
+- Red (VCC) → Breadboard positive rail  
+- Brown/Black (GND) → Breadboard negative rail  
+- Orange/Yellow (Signal) → Digital Pin 10  
 
-## Author
+### Keypad (4x4)
 
-**Abdelrhman Ashraf**  
-Electrical Engineering Student – Helwan University  
-[LinkedIn](https://www.linkedin.com/in/abdelrhman-ashraf1)
+- Pin 1 (Row 1) → D2  
+- Pin 2 (Row 2) → D3  
+- Pin 3 (Row 3) → D4  
+- Pin 4 (Row 4) → D5  
+- Pin 5 (Col 1) → D6  
+- Pin 6 (Col 2) → D7  
+- Pin 7 (Col 3) → D8  
+- Pin 8 (Col 4) → D9  
+
+### LCD 1602 I2C
+
+- VCC → Breadboard positive rail  
+- GND → Breadboard negative rail  
+- SDA → A4  
+- SCL → A5  
+
+### Buzzer
+
+- Positive → D11  
+- Negative → Breadboard negative rail  
+
+## Modifications and Additions
+
+- Project name and team name displayed on startup for 2.5 seconds  
+- First-time setup prompts the user to enter a username and password  
+- System stores the entered username/password temporarily in memory  
+- Success and failure tones added to enhance interactivity  
+- Keypress sound plays with every keypad input  
+- System locks for 60 seconds after 3 failed password attempts, and lock duration doubles after each failure cycle  
+
+## References
+
+- Wokwi simulation project:  
+  [https://wokwi.com/projects/420621814809104385](https://wokwi.com/projects/420621814809104385)  
+
+- Wokwi Documentation:  
+  - [Buzzer](https://docs.wokwi.com/parts/wokwi-buzzer)  
+  - [LCD 1602 I2C](https://docs.wokwi.com/parts/wokwi-lcd1602)  
+  - [Keypad](https://docs.wokwi.com/parts/wokwi-membrane-keypad)  
+  - [Servo Motor](https://docs.wokwi.com/parts/wokwi-servo)  
+
+## Additional Notes
+
+- The system was tested and verified using the Wokwi online simulator  
+- Documentation and logic flow were refined with the help of AI tools for clarity  
