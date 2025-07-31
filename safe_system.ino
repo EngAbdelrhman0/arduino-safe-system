@@ -2,6 +2,7 @@
 #include "Wire.h"
 #include "LiquidCrystal_I2C.h"
 #include "Servo.h"
+#include <math.h>
 
 const byte ROWS = 4;
 const byte COLS = 4;
@@ -28,7 +29,8 @@ const int buzzerPin = 11;
 
 int failedAttempts = 0;
 const int MAX_ATTEMPTS = 3;
-unsigned long lockTime = 60000;
+unsigned long lockTime = 10000;
+int lockCount = 0;
 bool systemLocked = false;
 unsigned long lockStartTime = 0;
 
@@ -129,7 +131,7 @@ void loop() {
 
   if (systemLocked) {
     unsigned long remainingTime = lockTime - (millis() - lockStartTime);
-    if (remainingTime <= 0) {
+    if ((long)remainingTime <= 0) {
       systemLocked = false;
       lcd.clear();
       lcd.setCursor(0, 0);
@@ -139,7 +141,9 @@ void loop() {
       lcd.setCursor(0, 0);
       lcd.print("System Locked!");
       lcd.setCursor(0, 1);
-      lcd.print("Time left: " + String(remainingTime / 1000) + "s");
+      int sec = remainingTime / 1000;
+      String timeStr = (sec < 10 ? "0" : "") + String(sec) + "s";
+      lcd.print("Time left: " + timeStr);
       return;
     }
   }
@@ -182,8 +186,9 @@ void loop() {
         failedAttempts++;
         if (failedAttempts >= MAX_ATTEMPTS) {
           systemLocked = true;
+          lockCount++;
+          lockTime = 10000 * pow(2, lockCount);
           lockStartTime = millis();
-          lockTime *= 2;
           lcd.clear();
           lcd.setCursor(0, 0);
           lcd.print("System Locked!");
